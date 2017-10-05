@@ -326,18 +326,18 @@ Templates in React are written inside the JavaScript file using the [JSX languag
 ### AngularJS
 Interpolation is the process of data-binding values on the AngularJS `scope` to values in the html. You can read more on the [official documentation](https://docs.angularjs.org/guide/interpolation):
 
-Let's say we have a value `color` on our scope that is defined as `red`.
+Let's say we have a value `heroImageUrl` on our scope that is defined as `superman.jpg`.
 
 The following HTML
 
 ```html
-<p>My favorite color is {{color}}</p>
+<p><img src="images/{{heroImageUrl}}"> is the <i>interpolated</i> image.</p>
 ```
 
 will render to
 
 ```html
-<p>My favorite color is red.</p>
+<p><img src="images/superman.jpg"> is the <i>interpolated</i> image.</p>
 ```
 
 You can interpolate more complicated values within the curly braces. For example, `{{ getVal() }}` will interpolate to the return value of the function `getVal`.
@@ -360,8 +360,8 @@ However, Angular has the topic of choosing Property Binding or Interpolation (re
 Say you have a `heroImageUrl` that you wish to set.
 
 ```html
-<p><img src="{{heroImageUrl}}"> is the <i>interpolated</i> image.</p>
-<p><img [src]="heroImageUrl"> is the <i>property bound</i> image.</p>
+<p><img src="images/{{heroImageUrl}}"> is the <i>interpolated</i> image.</p>
+<p><img [src]="'images/' + heroImageUrl"> is the <i>property bound</i> image.</p>
 ```
 
 Both of these methods will work the same. Angular suggest to pick whichever your team picks as its coding style.
@@ -378,17 +378,17 @@ For example (taken from [here](https://stackoverflow.com/questions/21668025/reac
 
 The following will not work:
 ```html
-<img className="image" src="images/{this.props.image}" />
+<p><img src="images/{this.props.heroImageUrl}" /></p>
 ```
 
 But this will
 ```jsx
-<img className="image" src={"images/" + this.props.image"} />
+<p><img src={"images/" + this.props.heroImageUrl"} /></p>
 ```
 
 Or if you wish to use ES6 string interpolation
 ```jsx
-<img className="image" src={`images/${this.props.image}`} />
+<p><img src={`images/${this.props.heroImageUrl}`} /></p>
 ```
 
 There is no specific official documentation for interpolation in React, but you can read about embedding expressions [here](https://reactjs.org/docs/introducing-jsx.html#embedding-expressions-in-jsx).
