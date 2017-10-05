@@ -323,12 +323,80 @@ Templates in React are written inside the JavaScript file using the [JSX languag
 
 # Interpolation
 
-> TODO
+### AngularJS
+Interpolation is the process of data-binding values on the AngularJS `scope` to values in the html. You can read more on the [official documentation](https://docs.angularjs.org/guide/interpolation):
+
+Let's say we have a value `color` on our scope that is defined as `red`.
+
+The following HTML
+
+```html
+<p>My favorite color is {{color}}</p>
+```
+
+will render to
+
+```html
+<p>My favorite color is red.</p>
+```
+
+You can interpolate more complicated values within the curly braces. For example, `{{ getVal() }}` will interpolate to the return value of the function `getVal`.
+
+Another way to "bind" data in is use `ng-bind`.
+
+```html
+<label>Enter name: <input type="text" ng-model="name"></label><br>
+Hello <span ng-bind="name"></span>!
+```
+In this example, whatever is typed into the input will be placed on the `name` variable on the scope. The `ng-bind` will cause the content of the span to be updated to be the value of `name`. whenever the input changed. See the full example [here](https://docs.angularjs.org/api/ng/directive/ngBind).
+
+### Angular
+Angular is similar to AngularJS. You can read more on the [official documentation](https://angular.io/guide/template-syntax#interpolation----).
+
+`{color}` Will still interpolate to `red`.
+
+However, Angular has the topic of choosing Property Binding or Interpolation (read more here [official documentation](https://angular.io/guide/template-syntax#property-binding-or-interpolation)).  
+
+Say you have a `heroImageUrl` that you wish to set.
+
+```html
+<p><img src="{{heroImageUrl}}"> is the <i>interpolated</i> image.</p>
+<p><img [src]="heroImageUrl"> is the <i>property bound</i> image.</p>
+```
+
+Both of these methods will work the same. Angular suggest to pick whichever your team picks as its coding style.
+
+The property bound style is analogous to the `ng-bind` strategy used above.
+
+However, when setting an element property to a non-string data value, you must use property binding.
+
+
+### React
+Unlike Angular, React uses single curly braces. It does not support variable interpolation inside an attribute value, but anything in the curly braces is just javascript.
+
+For example (taken from [here](https://stackoverflow.com/questions/21668025/react-jsx-access-props-in-quotes))
+
+The following will not work:
+```html
+<img className="image" src="images/{this.props.image}" />
+```
+
+But this will
+```jsx
+<img className="image" src={"images/" + this.props.image"} />
+```
+
+Or if you wish to use ES6 string interpolation
+```jsx
+<img className="image" src={`images/${this.props.image}`} />
+```
+
+There is no specific official documentation for interpolation in React, but you can read about embedding expressions [here](https://reactjs.org/docs/introducing-jsx.html#embedding-expressions-in-jsx).
 
 # Filters
 
 > TODO
-> Angular's pipe character (|) 
+> Angular's pipe character (|)
 
 # Inputs and Outputs
 
@@ -511,10 +579,10 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 
 export class ReactiveFormComponent implements OnInit {
-  public form: FormGroup; 
+  public form: FormGroup;
   constructor(private formBuilder: FormBuilder) { }
   ngOnInit() {
-    this.form = this.formBuilder.group({name: [''], email: ['']}); 
+    this.form = this.formBuilder.group({name: [''], email: ['']});
   }
 }
 ```
