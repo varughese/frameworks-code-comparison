@@ -363,18 +363,18 @@ Templates in React are written inside the JavaScript file using the [JSX languag
 ### AngularJS
 Interpolation is the process of data-binding values on the AngularJS `scope` to values in the html. You can read more on the [official documentation](https://docs.angularjs.org/guide/interpolation):
 
-Let's say we have a value `heroImageUrl` on our scope that is defined as `superman.jpg`.
+Let's say we have a value `heroImageUrl` on our scope that is defined as `superman.jpg`. (We use `ng-src` here instead of the regular `src` attribute so that Angular can set it up. If you just you source, the browser will try to load the image before Angular has a chance to interpolate.)
 
 The following HTML
 
 ```html
-<p><img src="images/{{heroImageUrl}}"> is the <i>interpolated</i> image.</p>
+<p><img ng-src="images/{{heroImageUrl}}"> is the <i>interpolated</i> image.</p>
 ```
 
 will render to
 
 ```html
-<p><img src="images/superman.jpg"> is the <i>interpolated</i> image.</p>
+<p><img ng-src="images/superman.jpg"> is the <i>interpolated</i> image.</p>
 ```
 
 You can interpolate more complicated values within the curly braces. For example, `{{ getVal() }}` will interpolate to the return value of the function `getVal`.
@@ -390,7 +390,7 @@ In this example, whatever is typed into the input will be placed on the `name` v
 ### Angular
 Angular is similar to AngularJS. You can read more on the [official documentation](https://angular.io/guide/template-syntax#interpolation----).
 
-`{color}` Will still interpolate to `red`.
+`{{color}}` Will still interpolate to `red`.
 
 However, Angular has the topic of choosing Property Binding or Interpolation (read more here [official documentation](https://angular.io/guide/template-syntax#property-binding-or-interpolation)).  
 
